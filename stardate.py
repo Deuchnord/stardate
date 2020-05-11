@@ -24,7 +24,7 @@ def convert_to_stardate(date: datetime) -> (int, float, bool):
         diff = date - DATETIME_STANDARD_1
         units = diff.days * 5
         coeff = int(units / 10000)
-        time = fabs(int(diff.seconds / 3600 / 5))
+        time = fabs(int(diff.seconds / 3600 / 5)) * (-1 if coeff < 0 else 1)
         units = fabs(units) - (fabs(coeff) * 10000) + time
         return coeff, units, False
 
