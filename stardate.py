@@ -10,13 +10,11 @@ DATETIME_STANDARD_3 = datetime(2283, 10, 5)
 DATETIME_STANDARD_4 = datetime(2323, 1, 1)
 
 
-# See http://uss-france.strangewc.com/convers.htm
-
-
 def main():
     args = get_args()
+    date = datetime.fromisoformat(args.date) if args.date is not None else datetime.now()
 
-    coeff, stardate, display_float = convert_to_stardate(datetime.fromisoformat(args.date))
+    coeff, stardate, display_float = convert_to_stardate(date)
     print('Stardate: %s%s' % (('[%d] ' % coeff) if coeff is not None else '',
                               ('%.1f' if display_float else '%d') % stardate))
 
@@ -63,7 +61,7 @@ def floor(x: float, n: int = 0) -> float:
 
 def get_args():
     argparser = argparse.ArgumentParser()
-    argparser.add_argument('date', type=str)
+    argparser.add_argument('--date', '-d', type=str)
     return argparser.parse_args()
 
 
