@@ -22,7 +22,6 @@ def main():
 
 
 def convert_to_stardate(date: datetime) -> (int, float, bool):
-    print(date)
     if date < DATETIME_STANDARD_2:
         diff = date - DATETIME_STANDARD_1
         units = diff.days * 5
